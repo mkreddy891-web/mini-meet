@@ -8,7 +8,7 @@ export default function VideoTile({ stream, name, isLocal, audioEnabled, videoEn
     if (videoRef.current && stream) {
       videoRef.current.srcObject = stream;
     }
-  }, [stream]);
+  }, [stream, videoEnabled]);
 
   const initials = (name || 'Guest')
     .trim()
