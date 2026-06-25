@@ -70,8 +70,8 @@ export default function Room() {
     totalTiles <= 1 ? 'grid-cols-1' : totalTiles <= 4 ? 'grid-cols-2' : 'grid-cols-3';
 
   return (
-    <div className="flex min-h-screen flex-col bg-canvas">
-      <header className="flex items-center justify-between border-b border-line bg-surface px-5 py-3">
+    <div className="flex h-[100dvh] flex-col overflow-hidden bg-canvas">
+      <header className="flex shrink-0 items-center justify-between border-b border-line bg-surface px-5 py-3">
         <div className="flex items-center gap-3">
           <span className="h-2 w-2 rounded-full bg-signal animate-pulseSignal" />
           <button
@@ -88,7 +88,7 @@ export default function Room() {
         </span>
       </header>
 
-      <main className="flex-1 overflow-y-auto p-4">
+      <main className="min-h-0 flex-1 overflow-y-auto p-4">
         {connectionState === 'connecting' && (
           <div className="flex h-full items-center justify-center">
             <p className="font-body text-sm text-zinc-500">Connecting…</p>
@@ -121,13 +121,15 @@ export default function Room() {
         )}
       </main>
 
-      <ControlsBar
-        audioEnabled={audioEnabled}
-        videoEnabled={videoEnabled}
-        onToggleAudio={handleToggleAudio}
-        onToggleVideo={handleToggleVideo}
-        onLeave={handleLeave}
-      />
+      <div className="shrink-0">
+        <ControlsBar
+          audioEnabled={audioEnabled}
+          videoEnabled={videoEnabled}
+          onToggleAudio={handleToggleAudio}
+          onToggleVideo={handleToggleVideo}
+          onLeave={handleLeave}
+        />
+      </div>
     </div>
   );
 }
